@@ -51,8 +51,9 @@ var doEverything = function(context) {
     }
   }
   const br = String.fromCharCode(13);
+  const slash = String.fromCharCode(47);
 	setTimeout(() => {
-		alert('Update complete', `${br}Page numbers updated: ${numbersAdded}${br}First artboard with a page number instance: ${firstPageWithNumber}${br}Total artboards (starting at artboard ${firstPageWithNumber}): ${totalPages}${br}${br}Dates updated: ${datesAdded}${br}${br}Artboard names updated: ${titlesAdded}`)
+		alert('Update complete', `${br}Page numbers updated: ${numbersAdded}${br}First artboard with a page number instance: ${firstPageWithNumber}${br}Total artboards (starting at artboard ${firstPageWithNumber}): ${totalPages}${br}${br}Dates updated: ${datesAdded}${br}${br}Artboard names updated: ${titlesAdded}${br}${br}Plugin docs: https:${slash}${slash}github.com${slash}josephxbrick${slash}tidyupdocument${br}`)
 	}, 100);
 }
 
@@ -83,8 +84,9 @@ var addCurrentDate = function(context) {
   }
   // summary
   const br = String.fromCharCode(13);
+  const slash = String.fromCharCode(47);
   setTimeout(() => {
-    alert('Update complete', `${br}Date instances updated: ${datesAdded}${br}`)
+    alert('Update complete', `${br}Date instances updated: ${datesAdded}${br}${br}Plugin docs: https:${slash}${slash}github.com${slash}josephxbrick${slash}tidyupdocument${br}`)
   }, 50);
 
 }
@@ -161,9 +163,9 @@ var nameArtboards = function(context) {
   }
   // summary
   const br = String.fromCharCode(13);
-  const q = String.fromCharCode(34);
+  const slash = String.fromCharCode(47);
   setTimeout(() => {
-    alert('Update complete', `${br}Titles updated: ${titlesAdded}`)
+    alert('Update complete', `${br}Titles updated: ${titlesAdded}${br}${br}Plugin docs: https:${slash}${slash}github.com${slash}josephxbrick${slash}tidyupdocument${br}`)
   }, 50);
 
 }
@@ -215,8 +217,8 @@ var pageNumberArtboards = function(context) {
 	}
 	// summary
 	const br = String.fromCharCode(13);
-	const q = String.fromCharCode(34);
-	alert('Update complete', `${br}Page numbers updated: ${numbersAdded}${br}First artboard with a page number instance: ${firstPageWithNumber}${br}Total artboards (starting at artboard ${firstPageWithNumber}): ${totalPages}`);
+  const slash = String.fromCharCode(47);
+	alert('Update complete', `${br}Page numbers updated: ${numbersAdded}${br}First artboard with a page number instance: ${firstPageWithNumber}${br}Total artboards (starting at artboard ${firstPageWithNumber}): ${totalPages}${br}${br}Plugin docs: https:${slash}${slash}github.com${slash}josephxbrick${slash}tidyupdocument${br}`);
 }
 
 // assumes non-nested symbol
