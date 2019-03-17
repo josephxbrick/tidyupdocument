@@ -14,6 +14,6 @@ A Sketch plugin that updates today's date on all artboards on the current Sketch
 [AddCurrentDateToArtboards](https://github.com/josephxbrick/AddCurrentDateToArtboards)
 
 ## Name artboard from page title instance
-This plugin is handy if your artboards contain a symbol instance to display the artboard's title. 
+If your artboards contain a symbol instance that displays the artboard's title, this plugin will use it to name the artboard to this title.
 
 [UsePageTitlesToRenameArtboards](https://github.com/josephxbrick/UsePageTitlesToRenameArtboards)
