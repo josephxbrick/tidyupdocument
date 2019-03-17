@@ -1,1 +1,53 @@
+{
+  "author" : "Joseph Brick",
+  "commands" : [
+    {
+        "script" : "main.js",
+        "name" : "Page-number artboards",
+        "identifier" : "pageNumberArtboards",
+        "handlers" : {
+                "run" : "pageNumberArtboards"
+        }
+    },
+    {
+        "script" : "main.js",
+        "name" : "Name artboards from page title",
+        "identifier" : "nameArtboards",
+        "handlers" : {
+                "run" : "nameArtboards"
+        }
+    },
+    {
+        "script" : "main.js",
+        "name" : "Update dates to current date",
+        "identifier" : "addCurrentDate",
+        "handlers" : {
+                "run" : "addCurrentDate"
+        }
+    },
+    {
+        "script" : "main.js",
+        "name" : "Do all of the above",
+        "identifier" : "doEverything",
+        "handlers" : {
+                "run" : "doEverything"
+        }
+    }
 
+  ],
+  "menu" : {
+    "title" : "Tidy-up Document",
+    "items" : [
+        "pageNumberArtboards",
+        "nameArtboards",
+        "addCurrentDate",
+        "-",
+        "doEverything"
+    ]
+  },
+  "identifier" : "jbrick-tidy-up-document",
+  "version" : "1.0",
+  "description" : "Various functions for tidying up a document",
+  "authorEmail" : "jbrick@gmail.com",
+  "name" : "Tidy-up Document"
+}
