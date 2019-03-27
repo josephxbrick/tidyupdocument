@@ -1,13 +1,13 @@
 // figure out if arboards are laid out horizontally or vertically.
 // assumes no artboads overlap.
 function getOrientation(artboards){
-	if (artboards.count() == 1){
+	if (artboards.length == 1){
 		return 'horizontal';
 	} else {
 		let widthSum = 0;
 		let minX = Number.MAX_SAFE_INTEGER;
 		let maxX = Number.MIN_SAFE_INTEGER;
-		for (let i = 0; i < artboards.count(); i++){
+		for (let i = 0; i < artboards.length; i++){
 			let artboard = artboards[i];
 			widthSum += artboard.frame().width();
 			let left = artboard.frame().x();

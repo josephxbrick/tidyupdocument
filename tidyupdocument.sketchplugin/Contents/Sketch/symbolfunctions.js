@@ -43,3 +43,18 @@ function getOverrideText(instance, overrideName){
 	}
 	return undefined;
 }
+
+function symbolMasterWithOverrideName(doc, overrideName) {
+  var symbolMasters = doc.documentData().allSymbols();
+  for (let i = 0; i < symbolMasters.count(); i++){
+		symbolMaster = symbolMasters[i];
+		symbolLayers = symbolMaster.children();
+		for (let j = 0; j < symbolLayers.count(); j++){
+			symbolLayer = symbolLayers[j];
+      if (symbolLayer.name() == overrideName) {
+          return symbolMaster;
+      }
+		}
+  }
+	return undefined;
+}
