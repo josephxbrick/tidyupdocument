@@ -169,7 +169,7 @@ function initializeTOC(doc) {
   const tocGroup = layerWithName(page, MSLayerGroup, '<tocGroup>');
   if (tocGroup !== undefined) {
     // remove all TOC groups.
-    const groups = toArray(tocGroup.layers()).filter(item => item.class() === MSLayerGroup && item.name().indexOf('tocEntry') == 0);
+    const groups = toArray(tocGroup.layers()).filter(item => item.class() === MSLayerGroup);
     for (const group of groups) {
       tocGroup.removeLayer(group);
     }
@@ -189,12 +189,16 @@ function createTOC(doc, tocArray) {
   // the section header is grouped with all of its pages). If there is a page with no
   // parent section, it gets its own group. The loop below creates the groups.
   let curGroup = [];
+  let curGroupName = undefined;
   let runningTop = 0;
   let groupNumber = 0;
   let isPartOfSection = false;
   let instance = undefined
   for (let i = 0; i < tocArray.length; i++) {
     let tocItem = tocArray[i];
+    if (curGroup.length == 0){
+      curGroupName = `TOC group: ${(tocItem.sectionTitle != '<undefined>') ? tocItem.sectionTitle : tocItem.pageTitle}`;
+    }
     if (tocItem.sectionTitle != '<undefined>') {
       // this item is a TOC section header
       instance = tocSectionMaster.newSymbolInstance();
@@ -202,6 +206,7 @@ function createTOC(doc, tocArray) {
       // store text values into object properties, because we can't set the overrides
       // yet as the instances are not part of the document
       instance.sectionTitle = tocItem.sectionTitle;
+      instance.setName(`TOC item: ${tocItem.sectionTitle}`);
       instance.pageNumber = tocItem.pageNumber;
       // we've just started a new section, so set isPartOfSection to true
       isPartOfSection = true;
@@ -210,6 +215,7 @@ function createTOC(doc, tocArray) {
       instance = tocPageMaster.newSymbolInstance();
       // store text values into object properties
       instance.pageTitle = tocItem.pageTitle;
+      instance.setName(`TOC item: ${tocItem.pageTitle}`);
       instance.pageNumber = tocItem.pageNumber;
     }
     instance.frame().setX(0);
@@ -225,7 +231,7 @@ function createTOC(doc, tocArray) {
       let tocEntry = MSLayerGroup.new();
       tocEntry.setConstrainProportions(0); // unlock aspect ratio
       groupNumber++;
-      tocEntry.setName(`tocEntry ${groupNumber}`);
+      tocEntry.setName(curGroupName);
       tocEntry.addLayers(curGroup);
       tocEntry.fixGeometryWithOptions(0); // fit group to its contents
       tocGroup.addLayers([tocEntry]); // add the group to the TOC
@@ -257,7 +263,7 @@ function layoutTOC(doc) {
   const tocW = tocGroup.frame().width();
   const tocH = tocGroup.frame().height();
   // get all groups in toc
-  let groups = toArray(tocGroup.layers()).filter(item => item.class() === MSLayerGroup && item.name().indexOf('tocEntry') == 0);
+  let groups = toArray(tocGroup.layers()).filter(item => item.class() === MSLayerGroup);
   let curY = curCol = 0;
   // add groups to an array of columns while setting each group's vertical position
   let columns = [[]];

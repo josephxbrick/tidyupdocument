@@ -1,9 +1,9 @@
 // assumes non-nested symbol
 function setOverrideText(instance, overrideName, newText){
 	let symbolMaster = instance.symbolMaster();
-	let children = symbolMaster.children();
-	for (let i = 0; i < children.count(); i++){
-		let layer = children[i];
+	let layers = symbolMaster.layers();
+	for (let i = 0; i < layers.count(); i++){
+		let layer = layers[i];
 		if (layer.name() == overrideName){
 			let objectID = layer.objectID();
 			if (instance.overrides()[objectID] !== undefined) {
@@ -21,9 +21,9 @@ function setOverrideText(instance, overrideName, newText){
 // assumes non-nested symbol
 function getDefaultOverrideText(instance, overrideName){
 	let symbolMaster = instance.symbolMaster();
-	let children = symbolMaster.children();
-	for (let i = 0; i < children.count(); i++){
-		let layer = children[i];
+	let layers = symbolMaster.layers();
+	for (let i = 0; i < layers.count(); i++){
+		let layer = layers[i];
 		if (layer.name() == overrideName){
 			return layer.stringValue();
 		}
@@ -34,9 +34,9 @@ function getDefaultOverrideText(instance, overrideName){
 // assumes non-nested symbol
 function getOverrideText(instance, overrideName){
 	let symbolMaster = instance.symbolMaster();
-	let children = symbolMaster.children();
-	for (let i = 0; i < children.count(); i++){
-		layer = children[i];
+	let layers = symbolMaster.layers();
+	for (let i = 0; i < layers.count(); i++){
+		layer = layers[i];
 		if (layer.name() == overrideName){
 			return instance.overrides()[layer.objectID()];
 		}
@@ -48,7 +48,7 @@ function symbolMasterWithOverrideName(doc, overrideName) {
   var symbolMasters = doc.documentData().allSymbols();
   for (let i = 0; i < symbolMasters.count(); i++){
 		symbolMaster = symbolMasters[i];
-		symbolLayers = symbolMaster.children();
+		symbolLayers = symbolMaster.layers();
 		for (let j = 0; j < symbolLayers.count(); j++){
 			symbolLayer = symbolLayers[j];
       if (symbolLayer.name() == overrideName) {
