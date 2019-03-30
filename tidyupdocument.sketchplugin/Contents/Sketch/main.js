@@ -194,6 +194,7 @@ function createTOC(doc, tocArray) {
   let groupNumber = 0;
   let isPartOfSection = false;
   let instance = undefined
+  let initColWidth = 100; // this is to make sure that sections are same width as pages
   for (let i = 0; i < tocArray.length; i++) {
     let tocItem = tocArray[i];
     if (curGroup.length == 0){
@@ -203,6 +204,7 @@ function createTOC(doc, tocArray) {
       // this item is a TOC section header
       instance = tocSectionMaster.newSymbolInstance();
       instance.setConstrainProportions(0); // unlock the aspect ratio
+      instance.frame().setWidth(initColWidth);
       // store text values into object properties, because we can't set the overrides
       // yet as the instances are not part of the document
       instance.sectionTitle = tocItem.sectionTitle;
@@ -213,6 +215,8 @@ function createTOC(doc, tocArray) {
     } else if (tocItem.pageTitle != '<undefined>') {
       // this item is a TOC page
       instance = tocPageMaster.newSymbolInstance();
+      instance.setConstrainProportions(0); // unlock the aspect ratio
+      instance.frame().setWidth(initColWidth);
       // store text values into object properties
       instance.pageTitle = tocItem.pageTitle;
       instance.setName(`TOC item: ${tocItem.pageTitle}`);
