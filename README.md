@@ -1,6 +1,8 @@
 # Tidy-up Document
 Sketch plugin that combines four other Sketch plugins that help tidy up a Sketch-based document. (E.g., when using Sketch to produce a PDF or printed document.)
 
+Note: this plugin requires Sketch 53.2 or above.
+
 Navigate to the plugin repos to see the documentaton for each.
 
 ## Page-number Artboards
