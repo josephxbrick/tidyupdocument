@@ -1,11 +1,11 @@
 // assumes non-nested symbol
 function setOverrideText(instance, overrideName, newText){
 	let symbolMaster = instance.symbolMaster();
-	let layers = symbolMaster.layers();
-	for (let i = 0; i < layers.count(); i++){
-		let layer = layers[i];
-		if (layer.name() == overrideName){
-			let objectID = layer.objectID();
+	let children = symbolMaster.children();
+	for (let i = 0; i < children.count(); i++){
+		let child = children[i];
+		if (child.class() === MSTextLayer && child.name() == overrideName){
+			let objectID = child.objectID();
 			if (instance.overrides()[objectID] !== undefined) {
 				const dictionary = instance.overrides() || NSDictionary.dictionary();
 				const overrides = NSMutableDictionary.dictionaryWithDictionary(dictionary);
@@ -21,11 +21,11 @@ function setOverrideText(instance, overrideName, newText){
 // assumes non-nested symbol
 function getDefaultOverrideText(instance, overrideName){
 	let symbolMaster = instance.symbolMaster();
-	let layers = symbolMaster.layers();
-	for (let i = 0; i < layers.count(); i++){
-		let layer = layers[i];
-		if (layer.name() == overrideName){
-			return layer.stringValue();
+	let children = symbolMaster.children();
+	for (let i = 0; i < children.count(); i++){
+		let child = children[i];
+		if (child.class() === MSTextLayer && child.name() == overrideName){
+			return child.stringValue();
 		}
 	}
 	return undefined;
@@ -34,11 +34,11 @@ function getDefaultOverrideText(instance, overrideName){
 // assumes non-nested symbol
 function getOverrideText(instance, overrideName){
 	let symbolMaster = instance.symbolMaster();
-	let layers = symbolMaster.layers();
-	for (let i = 0; i < layers.count(); i++){
-		layer = layers[i];
-		if (layer.name() == overrideName){
-			return instance.overrides()[layer.objectID()];
+	let children = symbolMaster.children();
+	for (let i = 0; i < children.count(); i++){
+		child = children[i];
+		if (child.class() === MSTextLayer && child.name() == overrideName){
+			return instance.overrides()[child.objectID()];
 		}
 	}
 	return undefined;
@@ -48,10 +48,10 @@ function symbolMasterWithOverrideName(doc, overrideName) {
   var symbolMasters = doc.documentData().allSymbols();
   for (let i = 0; i < symbolMasters.count(); i++){
 		symbolMaster = symbolMasters[i];
-		symbolLayers = symbolMaster.layers();
-		for (let j = 0; j < symbolLayers.count(); j++){
-			symbolLayer = symbolLayers[j];
-      if (symbolLayer.name() == overrideName) {
+		children = symbolMaster.children();
+		for (let j = 0; j < children.count(); j++){
+			child = children[j];
+      if (child.class() === MSTextLayer && child.name() == overrideName) {
           return symbolMaster;
       }
 		}
