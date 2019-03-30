@@ -1,9 +1,10 @@
 var UI = require('sketch/ui')
 
-function getTextFromUser(prompt, initialValue) {
+function getStringFromUser(prompt, initialValue) {
   let retval = undefined;
   UI.getInputFromUser(
     prompt, {
+      type: UI.INPUT_TYPE.string,
       initialValue: initialValue,
     },
     (err, value) => {
