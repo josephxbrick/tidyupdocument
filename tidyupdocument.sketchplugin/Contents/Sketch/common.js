@@ -9,7 +9,7 @@ function getTextFromUser(prompt, initialValue) {
     (err, value) => {
       if (err) {
         // most likely the user canceled the input
-        return undefined;
+        retval = undefined;
       } else {
         retval = value;
       }
@@ -18,9 +18,24 @@ function getTextFromUser(prompt, initialValue) {
   return retval;
 }
 
-
-
-
+function getSelectionFromUser(prompt, possibleValues) {
+  let retval = undefined;
+  UI.getInputFromUser(
+    prompt, {
+      type: UI.INPUT_TYPE.selection,
+      possibleValues: possibleValues
+    },
+    (err, value) => {
+      if (err) {
+        // most likely the user canceled the input
+        retval = undefined;
+      } else {
+        retval = value;
+      }
+    }
+  );
+  return retval;
+}
 
 function displaySummary(doc, summary) {
   const br = String.fromCharCode(13);
