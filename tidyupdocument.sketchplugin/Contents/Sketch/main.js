@@ -17,7 +17,10 @@ var _tableOfContents = function(context) {
       // there's no stored setting, use default of 40
       colSpacing = 40;
     }
-    colSpacing = doc.askForUserInput_initialValue_("Spacing between columns", colSpacing);
+    colSpacing = getTextFromUser("Spacing between columns", colSpacing);
+    if (colSpacing === undefined){
+      return;
+    }
     Settings.setSettingForKey('col-spacing', colSpacing);
     pageNumberArtboards(context, summary);
     tableOfContents(context, summary);

@@ -1,3 +1,27 @@
+var UI = require('sketch/ui')
+function getTextFromUser(prompt, initialValue){
+  let retval = undefined;
+  UI.getInputFromUser(
+  	prompt,
+  	{
+        initialValue: initialValue,
+      },
+  	(err, value) => {
+  		if (err) {
+  			// most likely the user canceled the input
+  			return undefined;
+  		} else {
+          retval = value;
+      }
+  	}
+  );
+  return retval;
+}
+
+
+
+
+
 function displaySummary(doc, summary){
   const br = String.fromCharCode(13);
   const slash = String.fromCharCode(47);
