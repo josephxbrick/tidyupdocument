@@ -18,12 +18,16 @@ function getTextFromUser(prompt, initialValue) {
   return retval;
 }
 
-function getSelectionFromUser(prompt, possibleValues) {
+function getSelectionFromUser(prompt, possibleValues, defaultValue) {
+  if (defaultValue === undefined) {
+    defalutValue = possibleValues[0];
+  }
   let retval = undefined;
   UI.getInputFromUser(
     prompt, {
       type: UI.INPUT_TYPE.selection,
-      possibleValues: possibleValues
+      possibleValues: possibleValues,
+      initialValue: defalutValue,
     },
     (err, value) => {
       if (err) {
