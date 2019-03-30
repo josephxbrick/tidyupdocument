@@ -7,10 +7,8 @@ function getTextFromUser(prompt, initialValue) {
       initialValue: initialValue,
     },
     (err, value) => {
-      if (err) {
-        // most likely the user canceled the input
-        retval = undefined;
-      } else {
+      if (!err) {
+        // user did not cancel
         retval = value;
       }
     }
@@ -30,10 +28,8 @@ function getSelectionFromUser(prompt, possibleValues, defaultValue) {
       initialValue: defalutValue,
     },
     (err, value) => {
-      if (err) {
-        // most likely the user canceled the input
-        retval = undefined;
-      } else {
+      if (!err) {
+        // user did not cancel
         retval = value;
       }
     }
