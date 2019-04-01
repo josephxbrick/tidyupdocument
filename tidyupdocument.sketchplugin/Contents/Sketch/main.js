@@ -11,7 +11,7 @@ var _tableOfContents = function(context) {
   doc = context.document;
   // check if file is set up for creating a TOC
   if (checkTocSetup(doc, summary) !== undefined) {
-    let colSpacing = getStringFromUser('Pixel spacing between columns', 40, 'col-spacing');
+    let colSpacing = getStringFromUser('prompt', 40, 'col-spacing');
     if (colSpacing === undefined) {
       return;
     }
@@ -251,7 +251,6 @@ function createTOC(doc, tocArray) {
 
 function layoutTOC(doc) {
   // get stored colSpacing setting
-
   let colSpacing = Number(getStoredValue('col-spacing', 50));
   const page = doc.currentPage();
   const tocGroup = layerWithName(page, MSLayerGroup, '<tocGroup>');
