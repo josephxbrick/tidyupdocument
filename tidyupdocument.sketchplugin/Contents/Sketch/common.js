@@ -1,11 +1,17 @@
 var UI = require('sketch/ui')
+var Settings = require('sketch/settings');
 
-function getStringFromUser(prompt, initialValue) {
+// get string from user. defaultValue is ignored if value is stored in key
+function getStringFromUser(prompt, defaultValue, key) {
+  let storedValue = Settings.settingForKey(key);
+  if (storedValue === undefined) {
+    storedValue = defaultValue;
+  }
   let retval = undefined;
   UI.getInputFromUser(
     prompt, {
       type: UI.INPUT_TYPE.string,
-      initialValue: initialValue,
+      initialValue: storedValue,
     },
     (err, value) => {
       if (!err) {
@@ -14,19 +20,23 @@ function getStringFromUser(prompt, initialValue) {
       }
     }
   );
+  if (retval !== undefined) {
+    Settings.setSettingForKey(key, retval);
+  }
   return retval;
 }
 
-function getSelectionFromUser(prompt, possibleValues, defaultValue) {
-  if (defaultValue === undefined) {
-    defalutValue = possibleValues[0];
+function getSelectionFromUser(prompt, possibleValues, defaultValue, key) {
+  let storedValue = Settings.settingForKey(key);
+  if (storedValue === undefined) {
+    storedValue = defaultValue;
   }
   let retval = undefined;
   UI.getInputFromUser(
     prompt, {
       type: UI.INPUT_TYPE.selection,
       possibleValues: possibleValues,
-      initialValue: defalutValue,
+      initialValue: storedValue,
     },
     (err, value) => {
       if (!err) {
@@ -35,7 +45,18 @@ function getSelectionFromUser(prompt, possibleValues, defaultValue) {
       }
     }
   );
+  if (retval !== undefined) {
+    Settings.setSettingForKey(key, retval);
+  }
   return retval;
+}
+
+function getStoredValue(key, defaultValue) {
+  let storedValue = Settings.settingForKey(key);
+  if (storedValue === undefined) {
+    return defaultValue;
+  }
+  return storedValue;
 }
 
 function displaySummary(doc, summary) {
