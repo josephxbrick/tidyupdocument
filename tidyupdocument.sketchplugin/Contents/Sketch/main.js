@@ -11,7 +11,7 @@ var _tableOfContents = function(context) {
   doc = context.document;
   // check if file is set up for creating a TOC
   if (checkTocSetup(doc, summary) !== undefined) {
-    let colSpacing = getStringFromUser('prompt', 40, 'jeb-tidyup-col-spacing');
+    let colSpacing = getStringFromUser('Spacing between columns (in pixels)', 40, 'jeb-tidyup-col-spacing');
     if (colSpacing === undefined) {
       return;
     }
